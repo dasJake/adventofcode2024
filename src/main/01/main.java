@@ -12,8 +12,6 @@ public class main {
 
         List<Integer> leftlist = new ArrayList<>();
         List<Integer> rightlist = new ArrayList<>(); 
-//        int[] listOfDifferencesLeftToRight = new int[leftlist.size()];
-//        List<Integer> combinedList = Stream.concat(leftlist.stream(), rightlist.stream().map(x -> -x)).collect(Collectors.toList());
                 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
