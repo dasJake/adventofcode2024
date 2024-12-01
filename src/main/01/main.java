@@ -10,8 +10,8 @@ public class main {
         ClassLoader classloader = main.class.getClassLoader();
         File inputFile = new File(classloader.getResource("resources/input/01/input.txt").getFile());
 
-        List<Integer> leftlist = new ArrayList<>();
-        List<Integer> rightlist = new ArrayList<>(); 
+        List<Long> leftlist = new ArrayList<>();
+        List<Long> rightlist = new ArrayList<>();
                 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
@@ -19,8 +19,8 @@ public class main {
             while ((line = br.readLine()) != null) {
                 String[] lineValues = line.trim().split("\\s+");
 
-                leftlist.add(Integer.parseInt(lineValues[0]));
-                rightlist.add(Integer.parseInt(lineValues[1]));
+                leftlist.add(Long.parseLong(lineValues[0]));
+                rightlist.add(Long.parseLong(lineValues[1]));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -28,21 +28,21 @@ public class main {
 
         Collections.sort(leftlist);
         Collections.sort(rightlist);
-        List<Integer> diffList = IntStream.range(0, Math.min(leftlist.size(), rightlist.size()))
+        List<Long> diffList = IntStream.range(0, Math.min(leftlist.size(), rightlist.size()))
             .mapToObj(i -> Math.abs(leftlist.get(i) - rightlist.get(i)))
             .collect(Collectors.toList());
         
-        int sumDiffList = diffList.stream().mapToInt(Integer::intValue).sum();
+        long sumDiffList = diffList.stream().mapToInt(Long::intValue).sum();
         System.out.println(sumDiffList);
 
-        Map<Integer, Integer> occurrences = leftlist.stream()
+        Map<Long, Long> occurrences = leftlist.stream()
             .collect(Collectors.toMap(
                 leftElement -> leftElement,
-                leftElement -> (int) rightlist.stream().filter(rightElement -> rightElement.equals(leftElement)).count()
+                leftElement -> rightlist.stream().filter(rightElement -> rightElement.equals(leftElement)).count()
             ));
 
-        int sumOccurrencesTimesValues = occurrences.entrySet().stream()
-            .mapToInt(entry -> entry.getKey() * entry.getValue())
+        long sumOccurrencesTimesValues = occurrences.entrySet().stream()
+            .mapToLong(entry -> entry.getKey() * entry.getValue())
             .sum();
 
         System.out.println(sumOccurrencesTimesValues);
