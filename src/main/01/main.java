@@ -34,5 +34,17 @@ public class main {
         
         int sumDiffList = diffList.stream().mapToInt(Integer::intValue).sum();
         System.out.println(sumDiffList);
+
+        Map<Integer, Integer> occurrences = leftlist.stream()
+            .collect(Collectors.toMap(
+                leftElement -> leftElement,
+                leftElement -> (int) rightlist.stream().filter(rightElement -> rightElement.equals(leftElement)).count()
+            ));
+
+        int sumOccurrencesTimesValues = occurrences.entrySet().stream()
+            .mapToInt(entry -> entry.getKey() * entry.getValue())
+            .sum();
+
+        System.out.println(sumOccurrencesTimesValues);
     }
 }
