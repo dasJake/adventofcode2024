@@ -15,11 +15,10 @@ public class Day02 {
         File inputFile = new File(classLoader.getResource("src/main/resources/input/02/input.txt").getFile());
 
         Consumer<String> inputToLine = line -> {
-            String[] lineValues = line.trim().split("\\s+");
-            for (String val : lineValues) {
-                System.out.print(val + " ");
-            }
-            System.out.println("\n");
+            Long[] lineValues = Arrays.stream(line.trim().split("\\s+"))
+                .map(Long::parseLong)
+                .toArray(Long[]::new);
+            System.out.println(Arrays.toString(lineValues));
         };
 
         FileConsumer fileConsumer = new FileConsumer();
