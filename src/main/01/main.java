@@ -1,3 +1,5 @@
+package main._01;
+
 import java.util.*;
 import java.util.stream.*;
 import java.io.*;
@@ -8,7 +10,7 @@ public class main {
         System.out.println("advent day1");
         
         ClassLoader classloader = main.class.getClassLoader();
-        File inputFile = new File(classloader.getResource("resources/input/01/input.txt").getFile());
+        File inputFile = new File(classloader.getResource("src/main/resources/input/01/input.txt").getFile());
 
         List<Long> leftlist = new ArrayList<>();
         List<Long> rightlist = new ArrayList<>();
