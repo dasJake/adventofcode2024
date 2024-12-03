@@ -139,6 +139,7 @@ public class Day02 {
         List<Long> lineValuesCopy = new ArrayList<>(lineValues);
         List<Long> lineValuesCopy2 = new ArrayList<>(lineValues);
         List<Long> lineValuesCopy3 = new ArrayList<>(lineValues);
+        List<Long> lineValuesCopy4 = new ArrayList<>(lineValues);
         boolean pairIsSafe = true;
         List<Boolean> errorList = errorDetector(lineValuesCopy3);
         System.out.println(errorList);
@@ -171,9 +172,13 @@ public class Day02 {
                 System.out.println("try fixing with: " + lineValuesCopy.remove(indexOfError));
                 lineIsSafe = isLineSafe(lineValuesCopy);
             }
-            if (indexOfError != -1) {
+            if (!lineIsSafe && indexOfError != -1) {
                 System.out.println("try fixing with: " + lineValuesCopy2.remove(indexOfError + 1));
                 lineIsSafe = isLineSafe(lineValuesCopy2);
+            }
+            if (!lineIsSafe && indexOfError > 0) {
+                System.out.println("try fixing with: " + lineValuesCopy4.remove(indexOfError - 1));
+                lineIsSafe = isLineSafe(lineValuesCopy4);
             }
         }
         return lineIsSafe;
